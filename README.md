@@ -23,4 +23,4 @@ luarocks init
 luarocks build --local --tree=./lua_modules
 ```
 
-To run the project, use the helper shell script `./run.sh` to set the CPATH and PATH for the local rocktree.
+To run the project, use the helper shell script `./run.sh` to set the CPATH and PATH for the local rocktree & run main.lua.
