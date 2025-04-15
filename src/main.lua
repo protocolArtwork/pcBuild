@@ -1,6 +1,7 @@
 require("luarocks.loader")
 
 local lfs = require("lfs")
+local pclog = require "log"
 
 local function file_exists(filename)
 	local attr = lfs.attributes(filename)
@@ -19,28 +20,16 @@ local function report_op(op, args)
 	return reportStr
 end
 
-local FMT_ERR = "[ERROR (%s)]\n\tInfo:\t%s\n\tError:\t%s"
-
----@param op_args string[]
----@param op string
----@param err string
-local function report_err(op, err, op_args)
-	local argStr = table.concat(op_args, SEP_OP_ARGS)
-	local reportStr = string.format(FMT_ERR, op, argStr, err)
-	return reportStr
-end
-
 ---@param dir string
 ---@return boolean, string?
 local function mkdir(dir, ...)
 	local op_report = report_op("mkdir", { dir, ... })
 	local success, value = lfs.mkdir(dir)
 	if not success then
-		local err_report = report_err("mkdir", value, { dir, ... })
-		print(err_report)
+		pclog.error(value .. ' (' .. dir .. ')')
 		return false, value
 	else
-		print(op_report)
+		pclog.info(op_report)
 		return true, nil
 	end
 end
@@ -84,7 +73,7 @@ local createSuccess, value = proj_skel(arg[1])
 print()
 
 if not createSuccess then
-	print("There were errors while creating the project skeleton:")
+	pclog.warn("There were errors while creating the project skeleton:")
 
 	---@type string[][]
 	---@diagnostic disable-next-line

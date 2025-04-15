@@ -17,6 +17,7 @@ dependencies = {
 build = {
    type = "builtin",
    modules = {
-	main = 'src/main.lua'
+	main = 'src/main.lua',
+	log = 'src/log.lua'
    }
 }
