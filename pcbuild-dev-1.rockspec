@@ -18,6 +18,7 @@ build = {
    type = "builtin",
    modules = {
 	main = 'src/main.lua',
-	log = 'src/log.lua'
+	log = 'src/log.lua',
+	colors = 'src/colors.lua'
    }
 }
