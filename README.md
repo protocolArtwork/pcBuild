@@ -1,3 +1,7 @@
+# pcBuild
+
+pcBuild is the build system for pcOS. It is intended for use with GCC & GNU Assembler.
+
 # Build Instructions
 
 ## Prerequisites
